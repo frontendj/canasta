@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canasta game tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Canasta game tracker</h1>
+      <p>Mitya, Maja, and Ines</p>
+    </header>
+
+    <p id="status" class="status">Loading games...</p>
+
+    <section class="leaderboards" aria-label="Leaderboards">
+      <div class="card">
+        <h2>By wins</h2>
+        <p class="hint">Win = score of 0 in a game</p>
+        <ol id="wins-list" class="leader-list"></ol>
+      </div>
+      <div class="card">
+        <h2>By points</h2>
+        <p class="hint">Lower total is better</p>
+        <ol id="points-list" class="leader-list"></ol>
+      </div>
+    </section>
+
+    <section class="summary card" aria-label="Summary">
+      <h2>Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Games</th>
+            <th>Wins</th>
+            <th>Total pts</th>
+          </tr>
+        </thead>
+        <tbody id="summary-body"></tbody>
+      </table>
+    </section>
+
+    <section class="log-section" aria-label="Game log">
+      <h2>Game log</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Mitya</th>
+            <th>Maja</th>
+            <th>Ines</th>
+            <th>Winner(s)</th>
+          </tr>
+        </thead>
+        <tbody id="game-log-body"></tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p id="games-count"></p>
+    </footer>
+  </div>
+</body>
+</html>

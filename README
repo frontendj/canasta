@@ -1,1 +1,45 @@
-hello
+# Canasta score tracker
+
+A small static site for Mitya, Maja, and Ines to track Canasta games. Built for [GitHub Pages](https://pages.github.com/) — edit JSON, push, and the page calculates everything in the browser.
+
+## Data format
+
+[`data/games.json`](data/games.json) is a JSON array — one object per game:
+
+```json
+[
+  { "date": "2025-05-20", "Mitya": 12, "Maja": 0, "Ines": 45 }
+]
+```
+
+- **date**: `YYYY-MM-DD` (repeat the same date for multiple games on one day)
+- **Mitya**, **Maja**, **Ines**: numeric scores for that game
+
+### Rules on the page
+
+- **Win**: a player’s score is exactly `0` in that game (multiple zeros = multiple winners).
+- **Points leaderboard**: sum of all game scores; **lower total is better**.
+
+## Updating games
+
+To add games, edit [`data/games.json`](data/games.json) and push the change. You do not need to rebuild [`index.html`](index.html) after each score update.
+
+The page structure lives in [`index.html`](index.html), styling lives in [`styles.css`](styles.css), and calculations/rendering live in [`app.js`](app.js).
+
+## Local preview
+
+Because the page fetches `data/games.json`, preview it through a local web server rather than opening `index.html` directly:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+## GitHub Pages
+
+1. Push this repo to GitHub.
+2. **Settings → Pages → Build and deployment**: Source = **Deploy from a branch**, Branch = **main**, Folder = **/ (root)**.
+3. After each score update: edit `data/games.json`, commit it, and push.
+
+The site will be at `https://<username>.github.io/<repo>/`.
