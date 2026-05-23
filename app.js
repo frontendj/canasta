@@ -66,6 +66,15 @@ function sortByPoints(stats) {
   });
 }
 
+function sortGamesByDate(games) {
+  return [...games]
+    .map((game, index) => ({ ...game, _index: index }))
+    .sort((a, b) => {
+      const dateSort = b.date.localeCompare(a.date);
+      return dateSort !== 0 ? dateSort : b._index - a._index;
+    });
+}
+
 function renderLeaderboard(elementId, ordered, stats, valueKey, valueLabel) {
   document.getElementById(elementId).innerHTML = ordered
     .map((player, index) => {
@@ -91,13 +100,7 @@ function renderSummary(games, stats) {
 }
 
 function renderGameLog(games) {
-  const sorted = [...games].map((game, index) => ({ ...game, _index: index }));
-  sorted.sort((a, b) => {
-    const dateSort = b.date.localeCompare(a.date);
-    return dateSort !== 0 ? dateSort : b._index - a._index;
-  });
-
-  document.getElementById("game-log-body").innerHTML = sorted
+  document.getElementById("game-log-body").innerHTML = games
     .map((game) => {
       const winnerNames = winners(game);
       const winnerCell =
@@ -114,6 +117,7 @@ function renderGameLog(games) {
 }
 
 function render(games) {
+  const sortedGames = sortGamesByDate(games);
   const stats = computeStats(games);
   renderLeaderboard("wins-list", sortByWins(stats), stats, "wins", "wins");
   renderLeaderboard(
@@ -124,7 +128,7 @@ function render(games) {
     "pts",
   );
   renderSummary(games, stats);
-  renderGameLog(games);
+  renderGameLog(sortedGames);
   document.getElementById("games-count").textContent = `${games.length} game${
     games.length === 1 ? "" : "s"
   } logged`;

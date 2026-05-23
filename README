@@ -14,6 +14,7 @@ A small static site for Mitya, Maja, and Ines to track Canasta games. Built for 
 
 - **date**: `YYYY-MM-DD` (repeat the same date for multiple games on one day)
 - **Mitya**, **Maja**, **Ines**: numeric scores for that game
+- Games can be entered in any order; the page sorts the log by date, newest first.
 
 ### Rules on the page
 
@@ -42,4 +43,4 @@ Then open `http://localhost:8000`.
 2. **Settings → Pages → Build and deployment**: Source = **Deploy from a branch**, Branch = **main**, Folder = **/ (root)**.
 3. After each score update: edit `data/games.json`, commit it, and push.
 
-The site will be at `https://<username>.github.io/<repo>/`.
+The site is published at <https://frontendj.github.io/canasta/>.
